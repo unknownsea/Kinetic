@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "net.seasonal.kinetic.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"KineticMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

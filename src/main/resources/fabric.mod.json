@@ -1,0 +1,36 @@
+{
+	"schemaVersion": 1,
+	"id": "kinetic",
+	"version": "${version}",
+	"name": "Kinetic",
+	"description": "A simple overhaul of the fall damage mechanic giving more meaning to falling.",
+	"authors": [
+		"sea"
+	],
+	"contact": {
+		"sources": "https://github.com/unknownsea/Kinetic"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/kinetic/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.seasonal.kinetic.Kinetic"
+		],
+		"fabric-datagen": [
+			"net.seasonal.kinetic.KineticDataGenerator"
+		]
+	},
+	"mixins": [
+		"kinetic.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
