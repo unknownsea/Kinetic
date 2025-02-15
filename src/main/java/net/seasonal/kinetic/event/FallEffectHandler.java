@@ -12,17 +12,32 @@ import net.seasonal.kinetic.Kinetic;
 
 public class FallEffectHandler {
     public static void applyFallEffects(PlayerEntity player, float fallDistance, World world) {
+        float health = player.getHealth();
+
+        // Momentum Boost (Sprint Landing)
         if (fallDistance >= 3 && fallDistance <= 6 && player.isSprinting()) {
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 10, 1, false, false, true));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, 5, 1, false, false, true));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 15, 1, false, false, true));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 10, 1, false, false, true)); // 10s
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, 5, 1, false, false, true)); // 5s
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 15, 1, false, false, true)); // 15s
             player.sendMessage(Text.literal("§aYou gained momentum!"), true);
         }
+
+        // Adrenaline Rush (Landing with 1-2 Hearts)
+        if (fallDistance > 5 && health <= 6.0F) {
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 1, false, false, true)); // 10s
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 200, 1, false, false, true)); // 10s
+            player.sendMessage(Text.literal("§bAdrenaline rush!"), true);
+            world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_WARDEN_ROAR, SoundCategory.PLAYERS, 1.0F, 1.5F);
+        }
+
+        // Sprung Ankle
         if (fallDistance >= 7 && fallDistance <= 12) {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 1, false, false, true));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 60, 1, false, false, true));
             player.sendMessage(Text.literal("§eYou sprung an ankle!"), true);
         }
+
+        // Broken Leg
         if (fallDistance > 12) {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 100, 1, false, false, true));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 1, false, false, true));
@@ -48,6 +63,4 @@ public class FallEffectHandler {
             Kinetic.LOGGER.info("Played ENTITY_PLAYER_HURT and BLOCK_GRAVEL_BREAK for sprained ankle");
         }
     }
-
-
 }
