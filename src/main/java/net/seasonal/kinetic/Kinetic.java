@@ -10,6 +10,6 @@ public class Kinetic implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Kinetic initialized!");
+		LOGGER.info("Kinetic.java Initialized!");
 	}
 }

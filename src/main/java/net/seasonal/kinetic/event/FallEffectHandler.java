@@ -15,18 +15,19 @@ public class FallEffectHandler {
         if (fallDistance >= 3 && fallDistance <= 6 && player.isSprinting()) {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 10, 1, false, false, true));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, 5, 1, false, false, true));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 15, 1, false, false, true));
             player.sendMessage(Text.literal("§aYou gained momentum!"), true);
         }
         if (fallDistance >= 7 && fallDistance <= 12) {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 1, false, false, true));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 25, 1, false, false, true));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 60, 1, false, false, true));
             player.sendMessage(Text.literal("§eYou sprung an ankle!"), true);
         }
         if (fallDistance > 12) {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 100, 1, false, false, true));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 1, false, false, true));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 50, 1, false, false, true));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 1, false, false, true));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 100, 1, false, false, true));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 100, 1, false, false, true));
             player.sendMessage(Text.literal("§cYou broke your legs!"), true);
         }
 

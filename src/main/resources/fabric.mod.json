@@ -17,6 +17,9 @@
 		"main": [
 			"net.seasonal.kinetic.Kinetic"
 		],
+		"client": [
+			"net.seasonal.kinetic.KineticClient"
+		],
 		"fabric-datagen": [
 			"net.seasonal.kinetic.KineticDataGenerator"
 		]

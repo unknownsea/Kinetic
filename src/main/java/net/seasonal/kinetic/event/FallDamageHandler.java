@@ -7,7 +7,7 @@ import net.seasonal.kinetic.Kinetic;
 
 public class FallDamageHandler {
     public static void handleFall(PlayerEntity player, float fallDistance, float damageMultiplier, DamageSource damageSource) {
-        float newDamage = calculateFallDamage(fallDistance, damageMultiplier);
+        float newDamage = calculateFallDamage(player, fallDistance, damageMultiplier);
         FallEffectHandler.applyFallEffects(player, fallDistance, player.getWorld());
 
         if (newDamage > 0) {
@@ -20,8 +20,13 @@ public class FallDamageHandler {
         }
     }
 
-    private static float calculateFallDamage(float fallDistance, float damageMultiplier) {
+    private static float calculateFallDamage(PlayerEntity player, float fallDistance, float damageMultiplier) {
         if (fallDistance <= 3) return 0;
-        return (float) Math.pow(fallDistance - 3, 1.2) * 0.5F * damageMultiplier;
+        float damage = (float) Math.pow(fallDistance - 3, 1.2) * 0.5F * damageMultiplier;
+        if (player.isSneaking()) {
+            damage *= 0.85F;
+        }
+        return damage;
     }
+
 }
